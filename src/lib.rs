@@ -53,6 +53,7 @@ use core::fmt;
 use std::{error, str::FromStr};
 
 use byteorder::{BigEndian, ByteOrder};
+use serde::{Serialize, Deserialize};
 use time::OffsetDateTime;
 
 pub const KSUID_EPOCH: i64 = 1_400_000_000;
@@ -258,7 +259,7 @@ pub trait KsuidLike {
 /// let ksuid2 = Ksuid::from_str(&as_string).unwrap();
 /// assert_eq!(ksuid, ksuid2);
 ///  ```
-#[derive(Debug, PartialOrd, Ord, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, PartialOrd, Ord, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Ksuid([u8; TOTAL_BYTES]);
 
 impl Ksuid {
@@ -354,7 +355,7 @@ impl fmt::Display for Ksuid {
 /// let ksuid2 = KsuidMs::from_str(&as_string).unwrap();
 /// assert_eq!(ksuid, ksuid2);
 ///  ```
-#[derive(Debug, PartialOrd, Ord, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, PartialOrd, Ord, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct KsuidMs([u8; TOTAL_BYTES]);
 
 impl KsuidMs {
